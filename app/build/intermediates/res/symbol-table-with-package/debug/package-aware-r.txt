@@ -675,6 +675,8 @@ id end_padder
 id expand_activities_button
 id expanded_menu
 id forever
+id fragment
+id fragment_header
 id home
 id homeAsUp
 id icon
@@ -704,6 +706,9 @@ id parentPanel
 id progress_circular
 id progress_horizontal
 id radio
+id radio_button_no
+id radio_button_yes
+id radio_group
 id right_icon
 id right_side
 id screen
@@ -785,6 +790,7 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout activity_main
+layout fragment_simple
 layout notification_action
 layout notification_action_tombstone
 layout notification_media_action
@@ -843,10 +849,12 @@ string article1
 string article2
 string close
 string exception_message
+string hello_blank_fragment
 string no
 string no_message
 string open
 string question_article
+string question_string
 string search_menu_title
 string status_bar_notification_info_overflow
 string title1

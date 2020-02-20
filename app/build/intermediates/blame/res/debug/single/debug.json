@@ -872,6 +872,10 @@
         "source": "C:\\Users\\Ryan\\.gradle\\caches\\transforms-2\\files-2.1\\cfe60aab5c3667a307af72a8cfc5c1ed\\appcompat-v7-26.0.1\\res\\drawable\\abc_cab_background_internal_bg.xml"
     },
     {
+        "merged": "C:\\Users\\Ryan\\Desktop\\FragmentExample\\app\\build\\intermediates\\res\\merged\\debug\\layout_fragment_simple.xml.flat",
+        "source": "C:\\Users\\Ryan\\Desktop\\FragmentExample\\app\\src\\main\\res\\layout\\fragment_simple.xml"
+    },
+    {
         "merged": "C:\\Users\\Ryan\\Desktop\\FragmentExample\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxxhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\Ryan\\.gradle\\caches\\transforms-2\\files-2.1\\cfe60aab5c3667a307af72a8cfc5c1ed\\appcompat-v7-26.0.1\\res\\drawable-xxxhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
