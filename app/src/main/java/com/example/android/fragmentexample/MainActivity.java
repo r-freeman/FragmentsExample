@@ -22,10 +22,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SimpleFragment.OnFragmentInteractionListener {
     private Button mButton;
     private boolean isFragmentDisplayed = false;
+    private int mRadioButtonChoice = 2; // default (no choice)
     static final String STATE_FRAGMENT = "state_of_fragment";
 
     @Override
@@ -39,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isFragmentDisplayed) {
+                if (!isFragmentDisplayed) {
                     displayFragment();
                 } else {
                     closeFragment();
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void displayFragment() {
-        SimpleFragment simpleFragment = SimpleFragment.newInstance();
+        SimpleFragment simpleFragment = SimpleFragment.newInstance(mRadioButtonChoice);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
@@ -96,5 +98,12 @@ public class MainActivity extends AppCompatActivity {
         mButton.setText(R.string.open);
         // Set boolean to indicate fragment is closed
         isFragmentDisplayed = false;
+    }
+
+    @Override
+    public void onRadioButtonChoice(int choice) {
+        mRadioButtonChoice = choice;
+        Toast.makeText(this, "Choice is " + Integer.toString(choice),
+                Toast.LENGTH_SHORT).show();
     }
 }

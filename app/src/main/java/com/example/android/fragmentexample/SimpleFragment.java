@@ -1,6 +1,7 @@
 package com.example.android.fragmentexample;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -16,11 +17,15 @@ import android.widget.TextView;
 public class SimpleFragment extends Fragment {
     public static final int YES = 0;
     public static final int NO = 1;
+    public int mRadioButtonChoice = NONE;
+    private static final int NONE = 2;
+    public static final String CHOICE = "choice";
+
+    OnFragmentInteractionListener mListener;
 
     public SimpleFragment() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,6 +33,16 @@ public class SimpleFragment extends Fragment {
         final View rootView =
                 inflater.inflate(R.layout.fragment_simple, container, false);
         final RadioGroup radioGroup = rootView.findViewById(R.id.radio_group);
+
+        if (getArguments().containsKey(CHOICE)) {
+            // a choice was made, get it.
+            mRadioButtonChoice = getArguments().getInt(CHOICE);
+            // Check the Radio button
+            if(mRadioButtonChoice != NONE) {
+                radioGroup.check
+                        (radioGroup.getChildAt(mRadioButtonChoice).getId());
+            }
+        }
 
         radioGroup.setOnCheckedChangeListener(
                 new RadioGroup.OnCheckedChangeListener() {
@@ -41,11 +56,17 @@ public class SimpleFragment extends Fragment {
                         switch (index) {
                             case YES:
                                 textView.setText(R.string.yes_message);
+                                mRadioButtonChoice = YES;
+                                mListener.onRadioButtonChoice(YES);
                                 break;
                             case NO:
                                 textView.setText(R.string.no_message);
+                                mRadioButtonChoice = NO;
+                                mListener.onRadioButtonChoice(NO);
                                 break;
                             default:
+                                mRadioButtonChoice = NONE;
+                                mListener.onRadioButtonChoice(NONE);
                                 break;
                         }
                     }
@@ -54,8 +75,27 @@ public class SimpleFragment extends Fragment {
         return rootView;
     }
 
-    public static SimpleFragment newInstance() {
-        return new SimpleFragment();
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        if (context instanceof OnFragmentInteractionListener) {
+            mListener = (OnFragmentInteractionListener) context;
+        } else {
+            throw new ClassCastException(context.toString()
+                    + getResources().getString(R.string.exception_message));
+        }
     }
 
+    public static SimpleFragment newInstance(int choice) {
+        SimpleFragment fragment = new SimpleFragment();
+        Bundle arguments = new Bundle();
+        arguments.putInt(CHOICE, choice);
+        fragment.setArguments(arguments);
+
+        return fragment;
+    }
+
+    interface OnFragmentInteractionListener {
+        void onRadioButtonChoice(int choice);
+    }
 }
